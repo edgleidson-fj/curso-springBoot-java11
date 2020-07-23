@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 307 - Banco de dados H2, test profile, JPA.
+// Aula 308 - JPA repository, injeção de dependência, database seeding.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
