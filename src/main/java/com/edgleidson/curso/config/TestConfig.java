@@ -25,7 +25,6 @@ public class TestConfig implements CommandLineRunner {
 	// Tudo dentro método será executado quando aplicação for iniciada.
 	@Override
 	public void run(String... args) throws Exception {
-		//Instanciado manualmente.
 		User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
 		User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 		

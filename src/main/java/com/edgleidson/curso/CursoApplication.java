@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 308 - JPA repository, injeção de dependência, database seeding.
+// Aula 309 - Camada de Serviço, Registro de componentes (@service - @Repository - @RestController).
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
