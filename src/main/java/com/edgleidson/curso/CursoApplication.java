@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 306 - Entidade User e seu resource.
+// Aula 307 - Banco de dados H2, test profile, JPA.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
