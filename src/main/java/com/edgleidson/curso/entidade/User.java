@@ -1,16 +1,23 @@
 package com.edgleidson.curso.entidade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+// User/Cliente.
 
 @Entity
-public class User implements Serializable{	
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -18,9 +25,16 @@ public class User implements Serializable{
 	private String email;
 	private String telefone;
 	private String senha;
-	
+
+	// Pedidos do cliente.
+	// Instanciando Coleção ou Lista.
+	// (mapeada como = client) dentro da classe Pedido. 
+	@OneToMany(mappedBy = "client") //Anotação (Um para Muitos) - Um cliente para vários pedidos.
+	@JsonIgnore //Anotação para evitar loop infinito. 
+	private List<Pedido> orders = new ArrayList<>();
+
 	public User() {
-		}
+	}
 
 	public User(Long id, String nome, String email, String telefone, String senha) {
 		this.id = id;
@@ -70,6 +84,11 @@ public class User implements Serializable{
 		this.senha = senha;
 	}
 
+	// Para Coleções ou Lista deve definir apenas GET.
+	public List<Pedido> getOrders() {
+		return orders;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,5 +112,6 @@ public class User implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
+
 }

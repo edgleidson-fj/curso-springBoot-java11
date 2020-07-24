@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 309 - Camada de Serviço, Registro de componentes (@service - @Repository - @RestController).
+// Aula 310 e 311 - Entidade Pedido, Datas com (INSTANT) e no padrão ISO 8601.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
