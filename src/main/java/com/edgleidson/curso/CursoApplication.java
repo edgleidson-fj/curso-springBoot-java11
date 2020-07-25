@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 310 e 311 - Entidade Pedido, Datas com (INSTANT) e no padrão ISO 8601.
+// Aula 312 - Enum PedidoStatus.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

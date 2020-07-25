@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.edgleidson.curso.entidade.enums.PedidoStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
@@ -28,6 +29,9 @@ public class Pedido implements Serializable {
 	// pattern = Padrão ISO 8601 / timezone = Padrão UTC (Greenwich Meen Time).
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT") 
 	private Instant momento; // Horário e Data.
+	
+	// Enum - Forçando como tipo Inteiro.
+	private Integer orderStatus;
 
 	// Cliente do Pedido.
 	@ManyToOne //Anotação (Muito para Um) - ex: Vários pedidos para um cliente. 
@@ -37,9 +41,10 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 
-	public Pedido(Long id, Instant momento, User client) {
+	public Pedido(Long id, Instant momento, PedidoStatus orderStatus, User client) {
 		this.id = id;
 		this.momento = momento;
+		setOrderStatus(orderStatus);
 		this.client = client;
 	}
 
@@ -57,6 +62,18 @@ public class Pedido implements Serializable {
 
 	public void setMomento(Instant momento) {
 		this.momento = momento;
+	}
+	
+	// Enum - Get com método (ValorDoCodigo) do Enum PedidoStatus.
+	public PedidoStatus getOrderStatus() {
+		return PedidoStatus.valorDoCodigo(orderStatus);
+	}
+
+	// Enum - Set com método getCodigo do Enum PedidoStatus.
+	public void setOrderStatus(PedidoStatus orderStatus) {
+		if(orderStatus != null) {
+		this.orderStatus = orderStatus.getCodigo();
+		}
 	}
 
 	public User getClient() {
