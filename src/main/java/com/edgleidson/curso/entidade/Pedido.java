@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 
 import com.edgleidson.curso.entidade.enums.PedidoStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 //Obs: A partir do Java 8 é mais indicado utilizar o INSTANT ao invés do DATE.
 
@@ -31,7 +30,7 @@ public class Pedido implements Serializable {
 	private Instant momento; // Horário e Data.
 	
 	// Enum - Forçando como tipo Inteiro.
-	private Integer orderStatus;
+	private Integer pedidoStatus;
 
 	// Cliente do Pedido.
 	@ManyToOne //Anotação (Muito para Um) - ex: Vários pedidos para um cliente. 
@@ -41,10 +40,11 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 
-	public Pedido(Long id, Instant momento, PedidoStatus orderStatus, User client) {
+	public Pedido(Long id, Instant momento, PedidoStatus pedidoStatus, User client) {
+		super();
 		this.id = id;
 		this.momento = momento;
-		setOrderStatus(orderStatus);
+		setPedidoStatus(pedidoStatus);
 		this.client = client;
 	}
 
@@ -65,14 +65,14 @@ public class Pedido implements Serializable {
 	}
 	
 	// Enum - Get com método (ValorDoCodigo) do Enum PedidoStatus.
-	public PedidoStatus getOrderStatus() {
-		return PedidoStatus.valorDoCodigo(orderStatus);
+	public PedidoStatus getPedidoStatus() {
+		return PedidoStatus.valorDoCodigo(pedidoStatus);
 	}
 
 	// Enum - Set com método getCodigo do Enum PedidoStatus.
-	public void setOrderStatus(PedidoStatus orderStatus) {
-		if(orderStatus != null) {
-		this.orderStatus = orderStatus.getCodigo();
+	public void setPedidoStatus(PedidoStatus pedidoStatus) {
+		if(pedidoStatus != null) {
+		this.pedidoStatus = pedidoStatus.getCodigo();
 		}
 	}
 

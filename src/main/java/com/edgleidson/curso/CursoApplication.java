@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 312 - Enum PedidoStatus.
+// Aula 313 - Entidade Categoria.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
