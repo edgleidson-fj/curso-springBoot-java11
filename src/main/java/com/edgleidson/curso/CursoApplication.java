@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 313 - Entidade Categoria.
+// Aula 314 - Entidade Produto.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

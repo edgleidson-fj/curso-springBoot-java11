@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.edgleidson.curso.entidade.Categoria;
 import com.edgleidson.curso.entidade.Pedido;
+import com.edgleidson.curso.entidade.Produto;
 import com.edgleidson.curso.entidade.User;
 import com.edgleidson.curso.entidade.enums.PedidoStatus;
 import com.edgleidson.curso.repositorios.CategoriaRepository;
 import com.edgleidson.curso.repositorios.PedidoRepository;
+import com.edgleidson.curso.repositorios.ProdutoRepository;
 import com.edgleidson.curso.repositorios.UserRepository;
 
 // Configuração do Perfil de teste.
@@ -31,6 +33,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private ProdutoRepository produtoRepository;
 	
 
 	// Método da implementação CommandLineRunner.
@@ -51,10 +56,18 @@ public class TestConfig implements CommandLineRunner {
 		Categoria cat1 = new Categoria(null, "Electronics"); 
 		Categoria cat2 = new Categoria(null, "Books"); 
 		Categoria cat3 = new Categoria(null, "Computers"); 
+		
+		// PRODUTO ()
+		Produto prod1 = new Produto(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, ""); 
+		Produto prod2 = new Produto(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, ""); 
+		Produto prod3 = new Produto(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, ""); 
+		Produto prod4 = new Produto(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, ""); 
+		Produto prod5 = new Produto(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 
 		// Insert.
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		pedidoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 	}
 }
