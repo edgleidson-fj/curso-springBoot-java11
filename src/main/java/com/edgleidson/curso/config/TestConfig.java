@@ -57,7 +57,7 @@ public class TestConfig implements CommandLineRunner {
 		Categoria cat2 = new Categoria(null, "Books"); 
 		Categoria cat3 = new Categoria(null, "Computers"); 
 		
-		// PRODUTO ()
+		// PRODUTO (id-nome-descricrao-preco-CATEGORIA).
 		Produto prod1 = new Produto(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, ""); 
 		Produto prod2 = new Produto(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, ""); 
 		Produto prod3 = new Produto(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, ""); 
@@ -69,5 +69,16 @@ public class TestConfig implements CommandLineRunner {
 		pedidoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
+		
+		// Add Categoria nos Produtos - (TB_PRODUTO_CATEGORIA).
+		prod1.getCategories().add(cat2);
+		prod2.getCategories().add(cat1);
+		prod2.getCategories().add(cat3);
+		prod3.getCategories().add(cat3);
+		prod4.getCategories().add(cat3);
+		prod5.getCategories().add(cat2);		
+		produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
+		
+		
 	}
 }

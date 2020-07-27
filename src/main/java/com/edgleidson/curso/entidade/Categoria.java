@@ -5,10 +5,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @Entity
 public class Categoria implements Serializable{
@@ -21,7 +26,8 @@ public class Categoria implements Serializable{
 	
 	// Produto.
 	// SET - Para garantir que não vai ter o categoria com mais de uma ocorrência da mesma produto.
-	@Transient
+	@JsonIgnore // Para evitar loop infinito.
+	@ManyToMany(mappedBy = "categories")//Tabela de associação, que já tinha sido feito na classe(Produto).
 	private Set<Produto> products = new HashSet<>();
 	
 	public Categoria() {

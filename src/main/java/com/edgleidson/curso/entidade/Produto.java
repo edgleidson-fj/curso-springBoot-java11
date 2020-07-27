@@ -1,3 +1,8 @@
+// Obs: (fetch = FetchType.EAGER) - solução provisória para erro no POSTMAN.   ou
+	// Obs: @Fetch(FetchMode.JOIN) - solução provisória para erro no POSTMAN. 
+
+
+
 package com.edgleidson.curso.entidade;
 
 import java.io.Serializable;
@@ -8,7 +13,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Produto implements Serializable{
@@ -21,10 +31,14 @@ public class Produto implements Serializable{
 	private String descricao;
 	private Double preco;
 	private String imgUrl;
-	
+		
 	// Categoria.
 	// SET - Para garantir que não vai ter o produto com mais de uma ocorrência da mesma categoria.
-	@Transient
+	@ManyToMany //(fetch = FetchType.EAGER) //(Muitos-para-Muitos) - Vários produtos para várias categorias.
+	@Fetch(FetchMode.JOIN)
+	@JoinTable(name = "produto_categoria", 
+	joinColumns = @JoinColumn(name = "produto_id"),
+	inverseJoinColumns = @JoinColumn(name = "categoria_id")) // Tabela de associação.
 	private Set<Categoria> categories = new HashSet<>();
 	
 	public Produto() {

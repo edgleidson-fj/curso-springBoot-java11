@@ -33,7 +33,7 @@ public class Pedido implements Serializable {
 	private Integer pedidoStatus;
 
 	// Cliente do Pedido.
-	@ManyToOne //Anotação (Muito para Um) - ex: Vários pedidos para um cliente. 
+	@ManyToOne //Anotação (Muito-para-Um) - ex: Vários pedidos para um cliente. 
 	@JoinColumn(name = "cliente_id") //Anotação (Chave estrangeira).
 	private User client;
 

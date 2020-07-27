@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 314 - Entidade Produto.
+// Aula 315 - Associação muitos-para-muitos com JoinTable.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
