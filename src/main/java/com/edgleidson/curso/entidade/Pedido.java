@@ -8,6 +8,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,9 +17,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.edgleidson.curso.entidade.enums.PedidoStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Obs: A partir do Java 8 é mais indicado utilizar o INSTANT ao invés do DATE.
 
@@ -35,6 +38,10 @@ public class Pedido implements Serializable {
 	// pattern = Padrão ISO 8601 / timezone = Padrão UTC (Greenwich Meen Time).
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT") 
 	private Instant momento; // Horário e Data.
+	
+	@OneToOne(mappedBy = "pedido", // Um-para-Um mapeado com classe Pagamento. 
+				cascade = CascadeType.ALL) // Para ambas classe ficarem com mesmo ID - (Pedido/Pagamento).
+	private Pagamento pagamento;
 	
 	// Enum - Forçando como tipo Inteiro.
 	private Integer pedidoStatus;
@@ -86,7 +93,9 @@ public class Pedido implements Serializable {
 		this.pedidoStatus = pedidoStatus.getCodigo();
 		}
 	}
+	//----------------------------------
 
+	// Cliente.
 	public User getClient() {
 		return client;
 	}
@@ -94,12 +103,24 @@ public class Pedido implements Serializable {
 	public void setClient(User client) {
 		this.client = client;
 	}
+	//-------------------------
+	
+	// Pagamento.
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+	//------------------------
 	
 	// ItemPedido.
 	public Set<ItemPedido> getItems() {
 		return items;
 	}
 	//--------------------------
+	
 
 	@Override
 	public int hashCode() {

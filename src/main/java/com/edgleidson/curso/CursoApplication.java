@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 318 - Associação Um-para-Muito entre Produto e ItemPedido.
+// Aula 318 - Entidade Pagamento, associação Um-para-Um.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

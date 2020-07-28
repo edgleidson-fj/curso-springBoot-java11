@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.edgleidson.curso.entidade.Categoria;
 import com.edgleidson.curso.entidade.ItemPedido;
+import com.edgleidson.curso.entidade.Pagamento;
 import com.edgleidson.curso.entidade.Pedido;
 import com.edgleidson.curso.entidade.Produto;
 import com.edgleidson.curso.entidade.User;
@@ -91,6 +92,10 @@ public class TestConfig implements CommandLineRunner {
 		ItemPedido ip4 = new ItemPedido(p3, prod5, 2, prod5.getPreco()); 
 		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3,ip4));
 		
+		// Add Pagamento no Pedido.
+		Pagamento pag1 = new Pagamento(null, Instant.parse("2019-06-20T21:53:07Z"), p1);
+		p1.setPagamento(pag1);
+		pedidoRepository.save(p1);
 		
 	}
 }
