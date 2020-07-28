@@ -24,6 +24,7 @@ public class Pagamento implements Serializable{
 	private Long id;
 	private Instant momento;
 	
+	@JsonIgnore // Para evitar loop infinito.
 	@OneToOne // Um-para-Um.
 	@MapsId
 	private Pedido pedido;

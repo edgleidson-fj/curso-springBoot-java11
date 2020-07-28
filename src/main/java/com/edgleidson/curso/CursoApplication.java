@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 318 - Entidade Pagamento, associação Um-para-Um.
+// Aula 320 - Métodos subTotal e total.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
