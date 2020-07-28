@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 315 - Associação muitos-para-muitos com JoinTable.
+// Aula 316 e 317 - Entidade ItemPedidoPK, Associação Muitos-para-Muitos com dados extra.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

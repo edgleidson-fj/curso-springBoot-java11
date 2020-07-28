@@ -1,14 +1,21 @@
+// Obs: fetch = FetchType.EAGER) - Solução provisória para o erro no POSTMAN.
+
+
 package com.edgleidson.curso.entidade;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.edgleidson.curso.entidade.enums.PedidoStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -36,6 +43,10 @@ public class Pedido implements Serializable {
 	@ManyToOne //Anotação (Muito-para-Um) - ex: Vários pedidos para um cliente. 
 	@JoinColumn(name = "cliente_id") //Anotação (Chave estrangeira).
 	private User client;
+	
+	// Itens do Pedido.
+	@OneToMany(mappedBy = "id.pedido", fetch = FetchType.EAGER)
+	private Set<ItemPedido> items = new HashSet<>();
 
 	public Pedido() {
 	}
@@ -83,6 +94,12 @@ public class Pedido implements Serializable {
 	public void setClient(User client) {
 		this.client = client;
 	}
+	
+	// ItemPedido.
+	public Set<ItemPedido> getItems() {
+		return items;
+	}
+	//--------------------------
 
 	@Override
 	public int hashCode() {
