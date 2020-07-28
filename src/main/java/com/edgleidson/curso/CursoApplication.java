@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 316 e 317 - Entidade ItemPedidoPK, Associação Muitos-para-Muitos com dados extra.
+// Aula 318 - Associação Um-para-Muito entre Produto e ItemPedido.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -10,15 +10,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable{
@@ -40,6 +44,9 @@ public class Produto implements Serializable{
 	joinColumns = @JoinColumn(name = "produto_id"),
 	inverseJoinColumns = @JoinColumn(name = "categoria_id")) // Tabela de associação.
 	private Set<Categoria> categories = new HashSet<>();
+	
+	@OneToMany(mappedBy = "id.produto", fetch = FetchType.EAGER)
+	private Set<ItemPedido> items = new HashSet<>();
 	
 	public Produto() {
 		}
@@ -94,8 +101,19 @@ public class Produto implements Serializable{
 	}
 
 	// Para Coleções ou Lista deve definir apenas GET.
+	// - Obs: Utilizando (categories) de acordo com diagrama UML.
 	public Set<Categoria> getCategories() {
 		return categories;
+	}
+	
+	// Pedido - Obs: Utilizando (orders) de acordo com diagrama UML.
+	@JsonIgnore // Anotação para evitar loop infinito.
+	public Set<Pedido> getOrders() {
+		Set<Pedido> set = new HashSet<>();
+		for(ItemPedido x : items) {
+			set.add(x.getPedido());
+		}
+		return set;
 	}
 
 	@Override
