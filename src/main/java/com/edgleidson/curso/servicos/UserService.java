@@ -29,4 +29,8 @@ public class UserService {
 	public User salvar(User obj) {
 		return repositorio.save(obj);
 	}
+	
+	public void excluir (Long id) {
+		repositorio.deleteById(id);
+	}
 }
