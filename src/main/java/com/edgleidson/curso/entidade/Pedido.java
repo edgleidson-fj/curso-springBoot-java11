@@ -21,7 +21,6 @@ import javax.persistence.OneToOne;
 
 import com.edgleidson.curso.entidade.enums.PedidoStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Obs: A partir do Java 8 é mais indicado utilizar o INSTANT ao invés do DATE.
 

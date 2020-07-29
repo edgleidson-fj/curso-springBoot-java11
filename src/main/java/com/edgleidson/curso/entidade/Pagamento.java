@@ -26,7 +26,7 @@ public class Pagamento implements Serializable{
 	
 	@JsonIgnore // Para evitar loop infinito.
 	@OneToOne // Um-para-Um.
-	@MapsId
+	@MapsId // Para compartihar o mesmo ID entre duas tabelas. 
 	private Pedido pedido;
 	
 	public Pagamento() {

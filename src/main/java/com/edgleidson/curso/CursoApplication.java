@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 320 - Métodos subTotal e total.
+// Aula 321 - UserService e UserResource - Salvar.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
