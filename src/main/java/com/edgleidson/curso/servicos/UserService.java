@@ -30,7 +30,20 @@ public class UserService {
 		return repositorio.save(obj);
 	}
 	
-	public void excluir (Long id) {
+	public void excluir(Long id) {
 		repositorio.deleteById(id);
+	}
+	
+	public User editar(Long id, User obj) {
+		User entidade = repositorio.getOne(id);
+		atualizarDados(entidade, obj);
+		return repositorio.save(entidade);
+	}
+
+	// Método para atualizar dados, exceto ID e Senha.
+	private void atualizarDados(User entidade, User obj) {
+		entidade.setNome(obj.getNome());
+		entidade.setEmail(obj.getEmail());
+		entidade.setTelefone(obj.getTelefone());
 	}
 }

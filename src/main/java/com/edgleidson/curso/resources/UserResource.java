@@ -3,14 +3,14 @@ package com.edgleidson.curso.resources;
 import java.net.URI;
 import java.util.List;
 
-import javax.servlet.Servlet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,7 +55,7 @@ public class UserResource {
 		return ResponseEntity.created(uri).body(obj);
 	}
 	
-	
+	// DeleteMapping = Tipo específico do (Spring Boot) para excluir requisições Web.
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Long id){
 		service.excluir(id);
@@ -65,4 +65,11 @@ public class UserResource {
 	}
 	
 	
+	
+	@Transactional // Solução provisória para evitar erros no POSTMAN.
+	@PutMapping(value = "/{id}")// Tipo específico do (Spring Boot) para atualizar requisições Web.
+	public ResponseEntity<User> editar (@PathVariable Long id, @RequestBody User obj){
+		obj = service.editar(id, obj);
+		return ResponseEntity.ok(obj);
+	}
 }

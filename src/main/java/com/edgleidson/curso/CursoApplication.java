@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 322 - UserService e UserResource - Excluir.
+// Aula 323 - UserService e UserResource - Editar.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
