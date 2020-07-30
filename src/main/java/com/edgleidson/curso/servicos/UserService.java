@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.edgleidson.curso.entidade.User;
 import com.edgleidson.curso.repositorios.UserRepository;
+import com.edgleidson.curso.servicos.exceptions.ResourceNotFoundException;
 
 // Anotação SpringBoot para poder ser injetado automaticamente com (Autowired). 
 @Service
@@ -23,7 +24,10 @@ public class UserService {
 	
 	public User buscarPorId(Long id) {
 		Optional<User> obj = repositorio.findById(id);
-		return obj.get();
+		
+		// orElseThrow = Traga o resultado ou execute uma execerção.
+		// -> Expressão Lambda com excerção personalizada.
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public User salvar(User obj) {

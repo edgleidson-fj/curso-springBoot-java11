@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 323 - UserService e UserResource - Editar.
+// Aula 324 - Tratamento de excerção - buscarPorId().
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
