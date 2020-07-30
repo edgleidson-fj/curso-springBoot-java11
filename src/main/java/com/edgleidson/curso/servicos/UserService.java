@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.edgleidson.curso.entidade.User;
 import com.edgleidson.curso.repositorios.UserRepository;
+import com.edgleidson.curso.servicos.exceptions.DatabaseException;
 import com.edgleidson.curso.servicos.exceptions.ResourceNotFoundException;
 
 // Anotação SpringBoot para poder ser injetado automaticamente com (Autowired). 
@@ -35,7 +38,15 @@ public class UserService {
 	}
 	
 	public void excluir(Long id) {
+		try {
 		repositorio.deleteById(id);
+		}
+		catch(EmptyResultDataAccessException ex) {
+			throw new ResourceNotFoundException(id);
+		}
+		catch(DataIntegrityViolationException ex) {
+			throw new DatabaseException(ex.getMessage());
+		}
 	}
 	
 	public User editar(Long id, User obj) {
