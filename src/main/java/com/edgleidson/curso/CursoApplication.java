@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 325 - Tratamento de excerção - excluir().
+// Aula 326 - Tratamento de excerção - editar().
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

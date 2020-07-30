@@ -3,6 +3,8 @@ package com.edgleidson.curso.servicos;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -49,10 +51,16 @@ public class UserService {
 		}
 	}
 	
+	
 	public User editar(Long id, User obj) {
+		try {
 		User entidade = repositorio.getOne(id);
 		atualizarDados(entidade, obj);
 		return repositorio.save(entidade);
+		}
+		catch(EntityNotFoundException ex) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	// Método para atualizar dados, exceto ID e Senha.
