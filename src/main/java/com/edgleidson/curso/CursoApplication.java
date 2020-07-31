@@ -1,6 +1,6 @@
 package com.edgleidson.curso;
 
-// Aula 326 - Tratamento de excerção - editar().
+// Aula 327 - Criando app Heroku e provisionando banco PostgreSQL.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
